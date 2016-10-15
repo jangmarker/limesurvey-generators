@@ -1,7 +1,7 @@
 [
   {
     "question": "alpha",
-    "ref": "ab",
+    "ref": ["a", "b"],
     "expression": "{max(if(alpha_1.NAOK=='a' && alpha_2.NAOK=='b', 2, 0), if(alpha_1.NAOK=='b' && alpha_2.NAOK=='a', 0, 0))}"
   }
 ]

@@ -20,5 +20,6 @@ class GeneratorServer(BaseHTTPRequestHandler):
             self.end_headers()
             self.wfile.write(output.encode())
 
-httpd = HTTPServer(("", 80), GeneratorServer)
-httpd.serve_forever()
+if __name__ == '__main__':
+    httpd = HTTPServer(("", 42387), GeneratorServer)
+    httpd.serve_forever()
