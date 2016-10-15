@@ -11,7 +11,7 @@ class GeneratorServer(BaseHTTPRequestHandler):
         url = urlparse(self.path)
         if url.path == '/orderquestion':
             query = parse_qs(url.query)
-            question_name = query['name']
+            question_name = query['name'][0]
             reference = literal_eval('[' + query['answer'][0] + ']')
 
             output = expression(question_name, reference)
