@@ -12,11 +12,13 @@ from server import GeneratorServer
 
 @ddt
 class ServerAcceptanceTest(unittest.TestCase):
+    port = 43287
+
     def __init__(self, methodName="runTest"):
         super().__init__(methodName)
-        self.port = 43287
 
-    def setUp(self):
+    @classmethod
+    def setUpClass(self):
         self.httpd = HTTPServer(("", self.port), GeneratorServer)
         self.server_thread = Thread(target=self.httpd.serve_forever)
         self.server_thread.daemon = True
@@ -35,5 +37,20 @@ class ServerAcceptanceTest(unittest.TestCase):
         reply = request.urlopen(url).read().decode()
         self.assertEqual(expression, reply)
 
-    def tearDown(self):
+    @file_data('multiplechoicequestion_expressions.json')
+    @unpack
+    def test_multipleChoiceQuestion(self, question, correct, wrong, expression):
+        t_url = Template("http://localhost:${port}/multiplechoicequestion?name=${question}&correct=${correct}&wrong=${wrong}")
+        url = t_url.substitute(
+            port=str(self.port),
+            question=question,
+            correct=','.join(map(lambda el: "'" + el + "'", correct)),
+            wrong=','.join(map(lambda el: "'" + el + "'", wrong))
+        )
+        debug(url)
+        reply = request.urlopen(url).read().decode()
+        self.assertEqual(expression, reply)
+
+    @classmethod
+    def tearDownClass(self):
         self.httpd.shutdown()

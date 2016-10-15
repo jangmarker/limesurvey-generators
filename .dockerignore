@@ -2,7 +2,7 @@
 .dockerignore
 .gitignore
 *Test.py
-orderquestion_expressions.json
+*_expressions.json
 
 # Created by .ignore support plugin (hsz.mobi)
 ### Python template

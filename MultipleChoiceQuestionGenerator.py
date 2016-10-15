@@ -2,8 +2,8 @@ from logging import debug
 from string import Template
 
 
-def generate(name, correct, wrong):
-    debug(name)
+def generate(question, correct, wrong):
+    debug(question)
     debug(correct)
     debug(wrong)
 
@@ -13,7 +13,7 @@ def generate(name, correct, wrong):
 
     ifs = []
 
-    def apply_to_template(template, key): return template.substitute(question=name, key=key)
+    def apply_to_template(template, key): return template.substitute(question=question, key=key)
 
     def insert_into_ifs(if_statement): ifs.append(if_statement)
 
