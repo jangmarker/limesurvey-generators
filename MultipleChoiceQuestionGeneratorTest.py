@@ -7,7 +7,7 @@ import MultipleChoiceQuestionGenerator
 
 @ddt
 class MultipleChoiceQuestionGeneratorTest(unittest.TestCase):
-    @file_data('multiplechoicequestions_expressions.json')
+    @file_data('multiplechoicequestion_expressions.json')
     @unpack
-    def test_rating(self, name, correct, wrong, expression):
-        self.assertEqual(MultipleChoiceQuestionGenerator.generate(name, correct, wrong), expression)
+    def test_rating(self, question, correct, wrong, expression):
+        self.assertEqual(MultipleChoiceQuestionGenerator.generate(question, correct, wrong), expression)
