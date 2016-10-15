@@ -1,9 +1,7 @@
-FROM python:onbuild
+FROM python:3.4-onbuild
 
 WORKDIR /project
 ADD . /project
-
-RUN python -m unittest *Test.py
 
 EXPOSE 80
 
