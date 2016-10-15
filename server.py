@@ -20,5 +20,5 @@ class GeneratorServer(BaseHTTPRequestHandler):
             self.end_headers()
             self.wfile.write(output.encode())
 
-httpd = HTTPServer(("", 8080), GeneratorServer)
+httpd = HTTPServer(("", 80), GeneratorServer)
 httpd.serve_forever()
